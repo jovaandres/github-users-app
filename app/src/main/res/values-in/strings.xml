@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubUsers</string>
+    <string name="detail">DETAIL</string>
+    <string name="tab_text_1">Pengikut</string>
+    <string name="tab_text_2">Mengikuti</string>
+    <string name="not_found">Pengguna tidak ditemukan</string>
+    <string name="search_hint">Cari pengguna</string>
+    <string name="connection_unavailable">Koneksi bermasalah, periksa koneksi internet anda</string>
+    <string name="profile_picture">Foto profil</string>
+    <string name="location_icon">Ikon Lokasi</string>
+    <string name="company_icon">Ikon perusahaan</string>
+    <string name="repository_icon">Ikon repositori</string>
+    <string name="followers_profile_picture">Foto profil</string>
+    <string name="language_setting">Pengaturan bahasa</string>
+    <string name="detail_user">Detail Pengguna</string>
+    <string name="repos">Respositori</string>
+</resources>

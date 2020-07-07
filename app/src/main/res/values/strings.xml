@@ -1,0 +1,21 @@
+<resources>
+    <!-- Other string resources-->
+    <string name="app_name">GithubUsers</string>
+    <string name="detail">DETAIL</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
+    <string name="not_found">User Not Found</string>
+    <string name="search_hint">Search by username</string>
+    <string name="connection_unavailable">Connection error, please check your internet connection</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="location_icon">Location Icon</string>
+    <string name="company_icon">Company Icon</string>
+    <string name="repository_icon">Repository Icon</string>
+    <string name="followers_profile_picture">Profile Picture</string>
+    <string name="language_setting">Language Setting</string>
+    <string name="detail_user">Detail User</string>
+    <string name="repos">Repository</string>
+
+</resources>
+
+
