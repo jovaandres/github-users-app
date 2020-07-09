@@ -1,24 +1,39 @@
 package com.sampling.test.githubUser.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.sampling.test.githubUser.CustomOnItemClickListener
+import com.sampling.test.githubUser.DetailUserActivity
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.data.UserListData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recycleview_github_user.view.*
 
-class CardViewAdapter(private val listUserData: ArrayList<UserListData>): RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
+class CardViewAdapter(private val listUserData: ArrayList<UserListData>, private val activity: Activity): RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
 
-    //Make on item list listener function that use to move to detail activity when it clicked
-    private lateinit var onItemClickCallback: OnItemClickCallback
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
-        this.onItemClickCallback = onItemClickCallback
+    inner class CardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        fun bind(listData: UserListData) {
+            with(itemView) {
+                tv_username.text = listData.username
+                Picasso.with(itemView.context)
+                    .load(listData.avatar)
+                    .resize(135, 135)
+                    .into(itemView.img_avatar)
+                detail_button.setOnClickListener(CustomOnItemClickListener(
+                    adapterPosition, object : CustomOnItemClickListener.OnItemClickCallback {
+                        override fun onItemClicked(v: View, position: Int) {
+                            showDetail(listData)
+                        }
+                    }
+                ))
+            }
+        }
     }
-
-    inner class CardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     //Set layout, view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -30,24 +45,17 @@ class CardViewAdapter(private val listUserData: ArrayList<UserListData>): Recycl
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val user = listUserData[position]
-
-        //Load image with Picasso
-        Picasso.with(holder.itemView.context)
-            .load(user.avatar)
-            .resize(135, 135)
-            .into(holder.itemView.img_avatar)
-
-        //Load data to list by ViewHolder
-        holder.itemView.apply {
-            tv_username.text = user.username
-            detail_button
-            detail_button.setOnClickListener {onItemClickCallback.onItemClicked(listUserData[holder.adapterPosition])}
-        }
+        holder.bind(listUserData[position])
     }
 
-    //OnItemClickCallback interface so main activity can implement the method
-    interface OnItemClickCallback{
-        fun onItemClicked(listData: UserListData)
+    //Show detail by Parcelable Intent
+    private fun showDetail(listData: UserListData){
+        val user = UserListData(
+            listData.avatar,
+            listData.username
+        )
+        val detailIntent = Intent(activity, DetailUserActivity::class.java)
+        detailIntent.putExtra(DetailUserActivity.EXTRA_DETAIL, user)
+        activity.startActivity(detailIntent)
     }
 }

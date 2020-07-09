@@ -46,7 +46,7 @@ class FollowsViewModel: ViewModel() {
                 }
 
                 override fun onError(anError: ANError?) {
-                    Log.d("onError: ", anError?.message.toString())
+                    Log.d("Error message: ", anError?.message.toString())
                 }
 
             })

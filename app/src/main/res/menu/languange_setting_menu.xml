@@ -5,5 +5,8 @@
         android:id="@+id/language_change_setting"
         android:title="@string/language_setting"
         app:showAsAction="never"/>
-
+    <item
+        android:id="@+id/test"
+        android:title="testAlgi"
+        app:showAsAction="never"/>
 </menu>

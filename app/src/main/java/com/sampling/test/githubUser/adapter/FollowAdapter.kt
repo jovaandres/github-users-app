@@ -26,7 +26,7 @@ class FollowViewAdapter(private val listFollow: ArrayList<UserFollowData>): Recy
 
         Picasso.with(holder.itemView.context)
             .load(follow.avatar)
-            .resize(135,135)
+            .resize(125,125)
             .into(holder.itemView.follow_avatar)
 
         holder.itemView.follow_name.text = follow.username

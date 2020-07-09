@@ -15,4 +15,9 @@
     <string name="language_setting">Pengaturan bahasa</string>
     <string name="detail_user">Detail Pengguna</string>
     <string name="repos">Respositori</string>
+    <string name="favorite_user">User Favorite</string>
+    <string name="delete_favorite">Hapus favorite</string>
+    <string name="delete_dialog">Yakin ingin menghapus item dari favorite?</string>
+    <string name="add_favorite">%1$s ditambahkan ke favorit</string>
+    <string name="detail_fav">Detail</string>
 </resources>

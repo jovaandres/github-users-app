@@ -15,6 +15,11 @@
     <string name="language_setting">Language Setting</string>
     <string name="detail_user">Detail User</string>
     <string name="repos">Repository</string>
+    <string name="favorite_user">Favorite User</string>
+    <string name="delete_favorite">Delete favorite</string>
+    <string name="delete_dialog">Are you sure to delete this item from favorite?</string>
+    <string name="add_favorite">%1$s added to favorite</string>
+    <string name="detail_fav">Detail</string>
 
 </resources>
 

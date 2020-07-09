@@ -1,2 +1,3 @@
+include ':githubfavorite'
 include ':app'
 rootProject.name = "GithubUser1"

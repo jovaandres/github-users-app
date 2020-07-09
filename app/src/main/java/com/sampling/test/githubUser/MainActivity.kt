@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sampling.test.githubUser.adapter.CardViewAdapter
-import com.sampling.test.githubUser.data.UserListData
 import com.sampling.test.githubUser.viewModel.SearchListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -41,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if( item.itemId == R.id.language_change_setting) {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        } else if (item.itemId == R.id.test) {
+            startActivity(Intent(this, FavoriteActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -83,30 +84,13 @@ class MainActivity : AppCompatActivity() {
             run {
                 rv_user.setHasFixedSize(true)
                 val cardViewAdapter =
-                    CardViewAdapter(list)
+                    CardViewAdapter(list, this)
                 rv_user.adapter = cardViewAdapter
                 progress_bar.hide()
                 if(list.size == 0) Toast.makeText(this@MainActivity,
                     getString(R.string.not_found), Toast.LENGTH_SHORT).show()
-
-                cardViewAdapter.setOnItemClickCallback(object : CardViewAdapter.OnItemClickCallback {
-                    override fun onItemClicked(listData: UserListData) {
-                        showDetail(listData)
-                    }
-                })
             }
         })
-    }
-
-    //Show detail by Parcelable Intent
-    private fun showDetail(listData: UserListData){
-        val user = UserListData(
-            listData.avatar,
-            listData.username
-        )
-        val detailIntent = Intent(this@MainActivity, DetailUserActivity::class.java)
-        detailIntent.putExtra(DetailUserActivity.EXTRA_DETAIL, user)
-        startActivity(detailIntent)
     }
 }
 

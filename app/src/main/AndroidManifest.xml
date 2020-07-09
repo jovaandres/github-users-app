@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sampling.test.githubUser">
+    <permission android:name="com.sampling.test.githubUser.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.sampling.test.githubUser.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -20,6 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.sampling.test.githubUser"
+            android:name=".provider.FavoriteProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.sampling.test.githubUser.READ_DATABASE"
+            android:writePermission="com.sampling.test.githubUser.WRITE_DATABASE"/>
     </application>
 
 </manifest>
