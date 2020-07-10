@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:icon="@drawable/ic_baseline_alarm_24"
+        android:key="reminder"
+        android:title="Remind me at 9:00 AM"
+        app:defaultValue="false" />
+
+    <Preference
+        android:icon="@drawable/ic_baseline_language_24"
+        android:key="language"
+        android:summary="Change default system language"
+        android:title="Change Language" />
+
+    <Preference
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:key="favorite"
+        android:summary="See Favorite List"
+        android:title="Favorites"/>
+
+</PreferenceScreen>

@@ -20,4 +20,8 @@
     <string name="delete_dialog">Yakin ingin menghapus item dari favorite?</string>
     <string name="add_favorite">%1$s ditambahkan ke favorit</string>
     <string name="detail_fav">Detail</string>
+    <string name="setting">Pengaturan</string>
+    <string name="reminder_added">Pengingat Ditambah</string>
+    <string name="reminder_deleted">Pengingat Dihapus</string>
+    <string name="message">Temukan orang favoritmu di github</string>
 </resources>

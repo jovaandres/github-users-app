@@ -7,13 +7,13 @@
 
     <activity
         android:id="@+id/nav_home"
-        android:name="com.sampling.test.githubUser.MainActivity"
+        android:name="com.sampling.test.githubUser.ui.MainActivity"
         android:label="Home"
         tools:layout="@layout/activity_main"/>
 
     <activity
         android:id="@+id/nav_favorite"
-        android:name="com.sampling.test.githubUser.FavoriteActivity"
+        android:name="com.sampling.test.githubUser.ui.FavoriteActivity"
         android:label="Favorite"
         tools:layout="@layout/activity_favorite"/>
 

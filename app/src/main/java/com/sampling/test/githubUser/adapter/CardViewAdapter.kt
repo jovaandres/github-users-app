@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sampling.test.githubUser.CustomOnItemClickListener
-import com.sampling.test.githubUser.DetailUserActivity
+import com.sampling.test.githubUser.ui.DetailUserActivity
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.data.UserListData
 import com.squareup.picasso.Picasso

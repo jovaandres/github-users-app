@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:visibility="visible"
+    tools:context=".ui.MainActivity">
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress_bar"
@@ -18,22 +20,22 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
-        android:layout_below="@id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/progress_bar"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginRight="8dp"
-        app:queryHint="@string/search_hint"
-        android:background="@drawable/search" />
+        android:background="@drawable/search"
+        app:queryHint="@string/search_hint" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_user"
-        android:layout_below="@id/search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/search"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        tools:listitem="@layout/item_recycleview_github_user"/>
+        tools:listitem="@layout/item_recycleview_github_user" />
 
 </RelativeLayout>

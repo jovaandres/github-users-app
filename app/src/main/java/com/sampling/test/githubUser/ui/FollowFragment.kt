@@ -1,4 +1,4 @@
-package com.sampling.test.githubUser
+package com.sampling.test.githubUser.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.FollowViewAdapter
 import com.sampling.test.githubUser.data.UserFollowData
 import com.sampling.test.githubUser.viewModel.FollowsViewModel

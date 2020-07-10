@@ -1,9 +1,8 @@
-package com.sampling.test.githubUser
+package com.sampling.test.githubUser.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +12,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.CardViewAdapter
 import com.sampling.test.githubUser.viewModel.SearchListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,15 +33,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.languange_setting_menu, menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if( item.itemId == R.id.language_change_setting) {
-            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-        } else if (item.itemId == R.id.test) {
-            startActivity(Intent(this, FavoriteActivity::class.java))
+        if (item.itemId == R.id.setting) {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

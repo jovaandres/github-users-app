@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.sampling.test.githubUser.FollowFragment
+import com.sampling.test.githubUser.ui.FollowFragment
 import com.sampling.test.githubUser.R
 import org.jetbrains.annotations.Nullable
 

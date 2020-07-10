@@ -1,4 +1,4 @@
-package com.sampling.test.githubUser
+package com.sampling.test.githubUser.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.SectionsPagerAdapter
 import com.sampling.test.githubUser.data.UserListData
 import com.sampling.test.githubUser.db.Favorite

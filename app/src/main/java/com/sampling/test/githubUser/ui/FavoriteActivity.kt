@@ -1,4 +1,4 @@
-package com.sampling.test.githubUser
+package com.sampling.test.githubUser.ui
 
 import android.database.ContentObserver
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.FavoriteAdapter
 import com.sampling.test.githubUser.db.Favorite.Companion.CONTENT_URI
 import com.sampling.test.githubUser.helper.MappingHelper

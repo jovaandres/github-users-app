@@ -20,6 +20,10 @@
     <string name="delete_dialog">Are you sure to delete this item from favorite?</string>
     <string name="add_favorite">%1$s added to favorite</string>
     <string name="detail_fav">Detail</string>
+    <string name="setting">Setting</string>
+    <string name="reminder_added">Reminder Added</string>
+    <string name="reminder_deleted">Reminder Deleted</string>
+    <string name="message">Find your favorite people in github</string>
 
 </resources>
 
