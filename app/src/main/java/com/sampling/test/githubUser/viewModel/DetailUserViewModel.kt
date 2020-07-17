@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
-class DetailUserViewModel: ViewModel() {
+class DetailUserViewModel : ViewModel() {
 
     val userDetail = MutableLiveData<UserDetailData>()
     val connectionStatus = MutableLiveData<String>()
@@ -24,13 +24,12 @@ class DetailUserViewModel: ViewModel() {
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .build()
-        AndroidNetworking.get("https://api.github.com/users/{username}")
+        AndroidNetworking.get("https://api.github.com/users/{username}")//add api token
             .addPathParameter("username", username)
-            .addHeaders("token","1882d02be7d779f05b966cd7fa363dc9d8e9453d")
             .setPriority(Priority.MEDIUM)
             .setOkHttpClient(okHttpClient)
             .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
 
                 override fun onResponse(response: JSONObject) {
                     connectionStatus.postValue("Available")
@@ -38,7 +37,7 @@ class DetailUserViewModel: ViewModel() {
                         name = response.getString("name"),
                         company = response.getString("company"),
                         location = response.getString("location"),
-                        repository = response.getInt("public_repos")
+                        public_repos = response.getInt("public_repos")
                     )
                     userDetail.postValue(userdata)
                 }

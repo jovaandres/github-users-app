@@ -25,9 +25,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                 company_fav.text = favoritesData.company
                 location_fav.text = favoritesData.location
 
-                Picasso.with(itemView.context)
+                Picasso.get()
                     .load(favoritesData.avatar)
-                    .resize(180, 180)
                     .into(itemView.img_fav)
             }
         }

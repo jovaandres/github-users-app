@@ -9,13 +9,14 @@ import com.sampling.test.githubUser.data.UserFollowData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recycleview_follow.view.*
 
-//See CardViewAdapter comment
-class FollowViewAdapter(private val listFollow: ArrayList<UserFollowData>): RecyclerView.Adapter<FollowViewAdapter.FollowViewHolder>() {
+class FollowViewAdapter(private val listFollow: ArrayList<UserFollowData>) :
+    RecyclerView.Adapter<FollowViewAdapter.FollowViewHolder>() {
 
-    inner class FollowViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recycleview_follow, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_recycleview_follow, parent, false)
         return FollowViewHolder(view)
     }
 
@@ -24,9 +25,9 @@ class FollowViewAdapter(private val listFollow: ArrayList<UserFollowData>): Recy
     override fun onBindViewHolder(holder: FollowViewHolder, position: Int) {
         val follow = listFollow[position]
 
-        Picasso.with(holder.itemView.context)
+        Picasso.get()
             .load(follow.avatar)
-            .resize(125,125)
+            .resize(125, 125)
             .into(holder.itemView.follow_avatar)
 
         holder.itemView.follow_name.text = follow.username

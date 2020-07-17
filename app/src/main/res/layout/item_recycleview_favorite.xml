@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/profiles"
         android:padding="8dp">
 
@@ -26,8 +26,8 @@
 
         <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/img_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/profile_picture"
             android:layout_marginTop="24dp"

@@ -7,6 +7,8 @@ import android.os.HandlerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sampling.test.githubfavorite.Favorite.Companion.CONTENT_URI
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.activity_favorite.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -43,7 +45,8 @@ class MainActivity : AppCompatActivity() {
             uiThread {
                 val adapter = FavoriteAdapter()
                 adapter.listFav = list
-                rv_fav.adapter = adapter
+                val alphaAdapter = AlphaInAnimationAdapter(adapter)
+                rv_fav.adapter = ScaleInAnimationAdapter(alphaAdapter)
             }
         }
     }

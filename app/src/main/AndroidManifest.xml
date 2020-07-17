@@ -10,8 +10,8 @@
         android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -20,10 +20,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.SettingsActivity" />
+
+        <activity android:name=".ui.SettingsActivity" />
         <activity android:name=".ui.FavoriteActivity" />
-        <activity android:name=".ui.DetailUserActivity" />
+        <activity
+            android:name=".ui.DetailUserActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,17 +34,34 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReceiver"
-            android:enabled="true"
-            android:exported="true" />
+        <receiver
+            android:name=".AlarmReceiver"
+            android:enabled="true" />
+
+        <receiver android:name=".widget.FavoriteUserWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_user_widget_info" />
+        </receiver>
 
         <provider
             android:name=".provider.FavoriteProvider"
             android:authorities="com.sampling.test.githubUser"
             android:enabled="true"
             android:exported="true"
+            android:grantUriPermissions="true"
             android:readPermission="com.sampling.test.githubUser.READ_DATABASE"
-            android:writePermission="com.sampling.test.githubUser.WRITE_DATABASE" />
+            android:writePermission="com.sampling.test.githubUser.WRITE_DATABASE"></provider>
+
+        <service
+            android:name=".widget.StackWidgetService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

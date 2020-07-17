@@ -13,7 +13,6 @@
     <string name="repository_icon">Repository Icon</string>
     <string name="followers_profile_picture">Profile Picture</string>
     <string name="language_setting">Language Setting</string>
-    <string name="detail_user">Detail User</string>
     <string name="repos">Repository</string>
     <string name="favorite_user">Favorite User</string>
     <string name="delete_favorite">Delete favorite</string>
@@ -24,6 +23,10 @@
     <string name="reminder_added">Reminder Added</string>
     <string name="reminder_deleted">Reminder Deleted</string>
     <string name="message">Find your favorite people in github</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="favorite_image_banner">Favorite Image Banner</string>
+    <string name="no_data">No Data</string>
 
 </resources>
 

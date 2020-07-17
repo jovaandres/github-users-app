@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import androidx.preference.*
 import com.sampling.test.githubUser.AlarmReceiver
 import com.sampling.test.githubUser.R
@@ -14,17 +15,20 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-        supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.settings,
-                PreferenceFragment()
-            )
-            .commit()
+        supportFragmentManager.commit {
+            replace(R.id.settings, PreferenceFragment())
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    class PreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener, PreferenceManager.OnPreferenceTreeClickListener {
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    class PreferenceFragment : PreferenceFragmentCompat(),
+        SharedPreferences.OnSharedPreferenceChangeListener,
+        PreferenceManager.OnPreferenceTreeClickListener {
 
         private lateinit var reminder: String
         private lateinit var language: String
@@ -70,9 +74,11 @@ class SettingsActivity : AppCompatActivity() {
             if (key == reminder) {
                 reminderPreference.setDefaultValue(sharedPreferences.getBoolean(reminder, false))
                 if (reminderPreference.isChecked) {
-                    alarmReceiver.setAlarm(context, getString(R.string.app_name), getString(
-                        R.string.message
-                    ))
+                    alarmReceiver.setAlarm(
+                        context, getString(R.string.app_name), getString(
+                            R.string.message
+                        )
+                    )
                 } else {
                     alarmReceiver.cancelAlarm(context)
                 }
@@ -80,7 +86,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            return when(preference?.key) {
+            return when (preference?.key) {
                 language -> {
                     startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     true

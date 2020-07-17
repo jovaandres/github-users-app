@@ -6,14 +6,13 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
 import com.sampling.test.githubUser.db.Favorite
 import com.sampling.test.githubUser.db.Favorite.Companion.TABLE_NAME
 import com.sampling.test.githubUser.db.FavoriteDatabase
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class FavoriteProvider: ContentProvider() {
+class FavoriteProvider : ContentProvider() {
 
     companion object {
         const val AUTHORITY = "com.sampling.test.githubUser"
@@ -22,7 +21,11 @@ class FavoriteProvider: ContentProvider() {
     }
 
     private val fUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
-    private val favoriteDao by lazy {   context?.let { FavoriteDatabase.getInstance(it)?.favoriteDao() }}
+    private val favoriteDao by lazy {
+        context?.let {
+            FavoriteDatabase.getInstance(it)?.favoriteDao()
+        }
+    }
 
 
     init {
@@ -45,9 +48,6 @@ class FavoriteProvider: ContentProvider() {
             FAVORITE -> {
                 favoriteDao?.selectAll()
             }
-            FAVORITE_ID -> {
-                favoriteDao?.selectById(ContentUris.parseId(uri))
-            }
             else -> throw IllegalArgumentException("Unknown uri $uri")
         }
         cursor?.setNotificationUri(context?.contentResolver, uri)
@@ -61,13 +61,12 @@ class FavoriteProvider: ContentProvider() {
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         when (fUriMatcher.match(uri)) {
             FAVORITE -> {
-                Log.d("TAGAA", uri.toString())
                 var result: Uri? = null
                 doAsync {
                     val id = favoriteDao?.insert(favoritesContentValues(values))
                     uiThread {
                         context?.contentResolver?.notifyChange(uri, null)
-                        result =  id?.let { ContentUris.withAppendedId(uri, it) }
+                        result = id?.let { ContentUris.withAppendedId(uri, it) }
                     }
                 }
                 return result
@@ -107,6 +106,7 @@ class FavoriteProvider: ContentProvider() {
             else -> throw IllegalArgumentException("Unknown uri $uri")
         }
     }
+
     private fun favoritesContentValues(contentValues: ContentValues?): Favorite {
         val name = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_NAME).toString()
         val avatar = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_AVATAR).toString()

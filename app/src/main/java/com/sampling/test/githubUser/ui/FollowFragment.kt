@@ -12,6 +12,8 @@ import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.FollowViewAdapter
 import com.sampling.test.githubUser.data.UserFollowData
 import com.sampling.test.githubUser.viewModel.FollowsViewModel
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.follow_fragment.*
 
 class FollowFragment : Fragment() {
@@ -19,7 +21,7 @@ class FollowFragment : Fragment() {
     companion object {
         fun newInstance(username: String, index: Int) =
             FollowFragment().apply {
-                val type = when(index){
+                val type = when (index) {
                     0 -> "followers"
                     1 -> "following"
                     else -> "null"
@@ -29,6 +31,7 @@ class FollowFragment : Fragment() {
                     putString(TYPE, type)
                 }
             }
+
         private const val TYPE = "type"
         private const val USERNAME = "username"
     }
@@ -53,19 +56,21 @@ class FollowFragment : Fragment() {
             setFollowList(username, type)
         }
         viewModel.getUserList().observe(viewLifecycleOwner, Observer { lists ->
-            run{
+            run {
                 viewModeling(lists)
             }
         })
     }
 
     //make followers/following list
-    private fun viewModeling(lists: ArrayList<UserFollowData>){
+    private fun viewModeling(lists: ArrayList<UserFollowData>) {
         rv_follow.setHasFixedSize(true)
         rv_follow.layoutManager = LinearLayoutManager(activity)
         val followViewAdapter =
             FollowViewAdapter(lists)
-        rv_follow.adapter = followViewAdapter
+        val alphaAdapter = AlphaInAnimationAdapter(followViewAdapter)
+        alphaAdapter.setFirstOnly(false)
+        rv_follow.adapter = ScaleInAnimationAdapter(alphaAdapter)
     }
 
 }

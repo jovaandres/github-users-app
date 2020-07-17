@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.CardViewAdapter
 import com.sampling.test.githubUser.viewModel.SearchListViewModel
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            SearchListViewModel::class.java)
+            SearchListViewModel::class.java
+        )
         getUserList()
         search()
         verifyConnection()
@@ -44,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun verifyConnection(){
+    private fun verifyConnection() {
         viewModel.getConnectionStatus().observe(this, Observer { status ->
             run {
                 if (status == "Unavailable") {
@@ -52,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         this,
                         getString(R.string.connection_unavailable),
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
@@ -60,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun search() {
         search as SearchView
-        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setSearchList(query)
@@ -76,17 +80,21 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun getUserList(){
+    private fun getUserList() {
         rv_user.layoutManager = LinearLayoutManager(this)
         viewModel.getSearchList().observe(this, Observer { list ->
             run {
                 rv_user.setHasFixedSize(true)
                 val cardViewAdapter =
                     CardViewAdapter(list, this)
-                rv_user.adapter = cardViewAdapter
+                val alphaAdapter = AlphaInAnimationAdapter(cardViewAdapter)
+                alphaAdapter.setFirstOnly(false)
+                rv_user.adapter = ScaleInAnimationAdapter(alphaAdapter)
                 progress_bar.hide()
-                if(list.size == 0) Toast.makeText(this@MainActivity,
-                    getString(R.string.not_found), Toast.LENGTH_SHORT).show()
+                if (list.size == 0) Toast.makeText(
+                    this@MainActivity,
+                    getString(R.string.not_found), Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

@@ -9,7 +9,8 @@ import com.sampling.test.githubUser.ui.FollowFragment
 import com.sampling.test.githubUser.R
 import org.jetbrains.annotations.Nullable
 
-class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager, name: String): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager, name: String) :
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     @StringRes
     private val tabTitle = intArrayOf(
@@ -26,7 +27,8 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager, n
 
 
     @Nullable
-    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(tabTitle[position])
+    override fun getPageTitle(position: Int): CharSequence? =
+        mContext.resources.getString(tabTitle[position])
 
     override fun getCount(): Int = 2
 }

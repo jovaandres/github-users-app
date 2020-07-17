@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import com.sampling.test.githubUser.ui.MainActivity
 import java.util.*
 
-class AlarmReceiver: BroadcastReceiver() {
+class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
         private const val ID_REPEATING = 101
@@ -37,15 +37,20 @@ class AlarmReceiver: BroadcastReceiver() {
         intent.putExtra(EXTRA_TITLE, title)
 
         val calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, 9)
             set(Calendar.MINUTE, 0)
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0 )
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
 
-        Toast.makeText(context, context.getString(R.string.reminder_added), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.getString(R.string.reminder_added), Toast.LENGTH_SHORT)
+            .show()
     }
 
     fun cancelAlarm(context: Context?) {
@@ -55,7 +60,8 @@ class AlarmReceiver: BroadcastReceiver() {
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
 
-        Toast.makeText(context, context.getString(R.string.reminder_deleted), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.getString(R.string.reminder_deleted), Toast.LENGTH_SHORT)
+            .show()
     }
 
     private fun showAlarmNotification(context: Context, title: String?, message: String?) {
@@ -64,7 +70,8 @@ class AlarmReceiver: BroadcastReceiver() {
         val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
-        val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManagerCompat =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, channelId)
             .setContentIntent(pendingIntent)
@@ -72,14 +79,15 @@ class AlarmReceiver: BroadcastReceiver() {
             .setContentTitle(title)
             .setContentText(message)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
-            .setVibrate(longArrayOf(1000,1000))
+            .setVibrate(longArrayOf(1000, 1000))
             .setSound(alarmSound)
             .setAutoCancel(true)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+            val notificationChannel =
+                NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
             notificationChannel.enableVibration(true)
-            notificationChannel.vibrationPattern = longArrayOf(1000,1000)
+            notificationChannel.vibrationPattern = longArrayOf(1000, 1000)
             builder.setChannelId(channelId)
             notificationManagerCompat.createNotificationChannel(notificationChannel)
         }

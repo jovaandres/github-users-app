@@ -15,7 +15,11 @@ abstract class FavoriteDatabase : RoomDatabase() {
         fun getInstance(context: Context): FavoriteDatabase? {
             if (INSTANCE == null) {
                 synchronized(FavoriteDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, FavoriteDatabase::class.java, "favorites.db")
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        FavoriteDatabase::class.java,
+                        "favorites.db"
+                    )
                         .build()
                 }
             }

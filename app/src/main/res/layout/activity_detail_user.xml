@@ -5,141 +5,149 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/top"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardview"
-            style="@style/cardViews"
-            android:layout_height="345dp"
-            android:layout_marginTop="8dp">
-
-            <RelativeLayout
-                android:id="@+id/main_top3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/profiles"
-                android:padding="6dp">
-
-                <com.github.siyamed.shapeimageview.RoundedImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/profile_picture"
-                    android:scaleType="centerCrop"
-                    app:siBorderColor="@android:color/white"
-                    app:siBorderWidth="2dp"
-                    app:siRadius="6dp"
-                    app:siSquare="true" />
-
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/textDetail2"
-                    android:layout_below="@id/avatar"
-                    android:layout_marginBottom="4dp"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/username"
-                    style="@style/textDetail2"
-                    android:layout_below="@id/name"
-                    android:layout_marginBottom="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="italic" />
-
-                <ImageView
-                    android:id="@+id/loc"
-                    style="@style/imageDetail"
-                    android:layout_below="@id/username"
-                    android:contentDescription="@string/location_icon"
-                    android:src="@drawable/location" />
-
-                <TextView
-                    android:id="@+id/location"
-                    style="@style/textDetail1"
-                    android:layout_below="@id/username"
-                    android:layout_toEndOf="@id/loc" />
-
-                <ImageView
-                    android:id="@+id/com"
-                    style="@style/imageDetail"
-                    android:layout_below="@id/location"
-                    android:contentDescription="@string/company_icon"
-                    android:src="@drawable/company" />
-
-                <TextView
-                    android:id="@+id/company"
-                    style="@style/textDetail1"
-                    android:layout_below="@id/location"
-                    android:layout_toEndOf="@id/com" />
-
-                <ImageView
-                    android:id="@+id/rep"
-                    style="@style/imageDetail"
-                    android:layout_below="@id/company"
-                    android:contentDescription="@string/repository_icon"
-                    android:src="@drawable/repository" />
-
-                <TextView
-                    android:id="@+id/repository"
-                    style="@style/textDetail1"
-                    android:layout_below="@id/company"
-                    android:layout_toEndOf="@id/loc" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <ProgressBar
-            android:id="@+id/progress_bar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:indeterminateTint="@color/colorPrimary"
-            android:visibility="visible" />
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
+            android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/profiles"
-            app:cardCornerRadius="40dp">
+            android:orientation="vertical">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
+                style="@style/cardViews"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <RelativeLayout
+                    android:id="@+id/main_top3"
+                    android:layout_width="match_parent"
+                    android:layout_height="356dp"
+                    android:background="@drawable/profiles"
+                    android:padding="6dp">
+
+                    <com.github.siyamed.shapeimageview.RoundedImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@string/profile_picture"
+                        android:scaleType="centerCrop"
+                        app:siBorderColor="@android:color/white"
+                        app:siBorderWidth="2dp"
+                        app:siRadius="6dp"
+                        app:siSquare="true" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        style="@style/textDetail2"
+                        android:layout_below="@id/avatar"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        style="@style/textDetail2"
+                        android:layout_below="@id/name"
+                        android:layout_marginBottom="12dp"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:id="@+id/loc"
+                        style="@style/imageDetail"
+                        android:layout_below="@id/username"
+                        android:contentDescription="@string/location_icon"
+                        android:src="@drawable/location" />
+
+                    <TextView
+                        android:id="@+id/location"
+                        style="@style/textDetail1"
+                        android:layout_below="@id/username"
+                        android:layout_toEndOf="@id/loc" />
+
+                    <ImageView
+                        android:id="@+id/com"
+                        style="@style/imageDetail"
+                        android:layout_below="@id/location"
+                        android:contentDescription="@string/company_icon"
+                        android:src="@drawable/company" />
+
+                    <TextView
+                        android:id="@+id/company"
+                        style="@style/textDetail1"
+                        android:layout_below="@id/location"
+                        android:layout_toEndOf="@id/com" />
+
+                    <ImageView
+                        android:id="@+id/rep"
+                        style="@style/imageDetail"
+                        android:layout_below="@id/company"
+                        android:contentDescription="@string/repository_icon"
+                        android:src="@drawable/repository" />
+
+                    <TextView
+                        android:id="@+id/repository"
+                        style="@style/textDetail1"
+                        android:layout_below="@id/company"
+                        android:layout_toEndOf="@id/loc" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ProgressBar
+                android:id="@+id/progress_bar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:indeterminateTint="@color/colorPrimary"
+                android:visibility="visible" />
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/colorPrimary"
-                app:tabTextColor="@android:color/white" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/profiles"
+                app:cardCornerRadius="40dp">
 
-        </androidx.cardview.widget.CardView>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/colorPrimary"
+                    app:tabTextColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
 
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/top" />
 
-        </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
+        android:id="@+id/fab_fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab_fav"
-        android:foregroundGravity="bottom"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-        app:layout_anchor="@id/top"
-        app:layout_anchorGravity="bottom|end"/>
+        android:foregroundGravity="bottom"
+        app:layout_anchor="@id/relative"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

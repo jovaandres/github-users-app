@@ -8,22 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sampling.test.githubUser.CustomOnItemClickListener
-import com.sampling.test.githubUser.ui.DetailUserActivity
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.data.UserListData
+import com.sampling.test.githubUser.ui.DetailUserActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recycleview_github_user.view.*
 
-class CardViewAdapter(private val listUserData: ArrayList<UserListData>, private val activity: Activity): RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
+class CardViewAdapter(
+    private val listUserData: ArrayList<UserListData>,
+    private val activity: Activity
+) : RecyclerView.Adapter<CardViewAdapter.CardViewHolder>() {
 
-    inner class CardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(listData: UserListData) {
             with(itemView) {
                 tv_username.text = listData.username
-                Picasso.with(itemView.context)
+                Picasso.get()
                     .load(listData.avatar)
                     .resize(135, 135)
                     .into(itemView.img_avatar)
+
                 detail_button.setOnClickListener(CustomOnItemClickListener(
                     adapterPosition, object : CustomOnItemClickListener.OnItemClickCallback {
                         override fun onItemClicked(v: View, position: Int) {
@@ -37,7 +41,8 @@ class CardViewAdapter(private val listUserData: ArrayList<UserListData>, private
 
     //Set layout, view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recycleview_github_user, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_recycleview_github_user, parent, false)
         return CardViewHolder(view)
     }
 
@@ -49,7 +54,7 @@ class CardViewAdapter(private val listUserData: ArrayList<UserListData>, private
     }
 
     //Show detail by Parcelable Intent
-    private fun showDetail(listData: UserListData){
+    private fun showDetail(listData: UserListData) {
         val user = UserListData(
             listData.avatar,
             listData.username

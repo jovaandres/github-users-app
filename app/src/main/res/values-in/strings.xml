@@ -13,7 +13,6 @@
     <string name="repository_icon">Ikon repositori</string>
     <string name="followers_profile_picture">Foto profil</string>
     <string name="language_setting">Pengaturan bahasa</string>
-    <string name="detail_user">Detail Pengguna</string>
     <string name="repos">Respositori</string>
     <string name="favorite_user">User Favorite</string>
     <string name="delete_favorite">Hapus favorite</string>
@@ -24,4 +23,8 @@
     <string name="reminder_added">Pengingat Ditambah</string>
     <string name="reminder_deleted">Pengingat Dihapus</string>
     <string name="message">Temukan orang favoritmu di github</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="favorite_image_banner">Favorite Image Banner</string>
+    <string name="no_data">No Data</string>
 </resources>

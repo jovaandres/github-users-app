@@ -10,4 +10,4 @@ data class FavoritesData(
     var avatar: String = "",
     var location: String = "",
     var company: String = ""
-): Parcelable
+) : Parcelable

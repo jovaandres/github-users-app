@@ -14,11 +14,13 @@ object MappingHelper {
                 val name = getString(getColumnIndex(Favorite.COLUMN_FAVORITE_NAME)).toString()
                 val avatar = getString(getColumnIndex(Favorite.COLUMN_FAVORITE_AVATAR)).toString()
                 val company = getString(getColumnIndex(Favorite.COLUMN_FAVORITE_COMPANY)).toString()
-                val location = getString(getColumnIndex(Favorite.COLUMN_FAVORITE_LOCATION)).toString()
+                val location =
+                    getString(getColumnIndex(Favorite.COLUMN_FAVORITE_LOCATION)).toString()
                 favList.add(FavoritesData(id, name, avatar, location, company))
             }
             cursor.close()
         }
         return favList
     }
+
 }

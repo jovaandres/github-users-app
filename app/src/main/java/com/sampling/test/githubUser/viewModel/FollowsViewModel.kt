@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import org.json.JSONArray
 import java.util.concurrent.TimeUnit
 
-class FollowsViewModel: ViewModel() {
+class FollowsViewModel : ViewModel() {
 
     private val userLists = MutableLiveData<ArrayList<UserFollowData>>()
 
@@ -22,14 +22,13 @@ class FollowsViewModel: ViewModel() {
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .build()
-        AndroidNetworking.get("https://api.github.com/users/{username}/{following}")
-            .addHeaders("token","1882d02be7d779f05b966cd7fa363dc9d8e9453d")
+        AndroidNetworking.get("https://api.github.com/users/{username}/{following}")//add api token
             .addPathParameter("following", type)
             .addPathParameter("username", username)
             .setPriority(Priority.MEDIUM)
             .setOkHttpClient(okHttpClient)
             .build()
-            .getAsJSONArray(object : JSONArrayRequestListener{
+            .getAsJSONArray(object : JSONArrayRequestListener {
                 override fun onResponse(response: JSONArray) {
                     val userDatumData: ArrayList<UserFollowData> = arrayListOf()
                     userDatumData.clear()

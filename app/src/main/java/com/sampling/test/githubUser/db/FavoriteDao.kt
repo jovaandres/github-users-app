@@ -20,9 +20,6 @@ interface FavoriteDao {
     @Query(value = "DELETE FROM $TABLE_NAME WHERE $ID = :id ")
     fun delete(id: Long?): Int
 
-    @Query(value = "DELETE FROM $TABLE_NAME")
-    fun deleteAll(): Int
-
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(favorite: Favorite): Int
 }

@@ -24,7 +24,6 @@ data class Favorite(
     @ColumnInfo(name = COLUMN_FAVORITE_LOCATION)
     var location: String? = ""
 ) {
-
     companion object : BaseColumns {
         const val TABLE_NAME = "favorites"
         const val ID = BaseColumns._ID
