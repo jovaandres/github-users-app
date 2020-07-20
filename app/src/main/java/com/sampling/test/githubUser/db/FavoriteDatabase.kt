@@ -10,6 +10,7 @@ abstract class FavoriteDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
 
     companion object {
+        @Volatile
         private var INSTANCE: FavoriteDatabase? = null
 
         fun getInstance(context: Context): FavoriteDatabase? {
