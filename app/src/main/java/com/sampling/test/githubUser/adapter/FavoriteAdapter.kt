@@ -11,19 +11,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sampling.test.githubUser.CustomOnItemClickListener
 import com.sampling.test.githubUser.R
-import com.sampling.test.githubUser.data.FavoritesData
 import com.sampling.test.githubUser.data.UserListData
+import com.sampling.test.githubUser.db.Favorite
 import com.sampling.test.githubUser.db.Favorite.Companion.CONTENT_URI
+import com.sampling.test.githubUser.helper.MappingHelper.toBitmap
 import com.sampling.test.githubUser.ui.DetailUserActivity
 import com.sampling.test.githubUser.widget.FavoriteUserWidget
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recycleview_favorite.view.*
 import org.jetbrains.anko.doAsync
 
 class FavoriteAdapter(private val activity: Activity) :
     RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
-    var listFav = ArrayList<FavoritesData>()
+    var listFav = ArrayList<Favorite>()
         set(listFavs) {
             if (listFavs.size > 0) {
                 this.listFav.clear()
@@ -33,22 +33,20 @@ class FavoriteAdapter(private val activity: Activity) :
         }
 
     inner class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(favoritesData: FavoritesData) {
+        fun bind(favoritesData: Favorite) {
             with(itemView) {
                 name_fav.text = favoritesData.name
                 company_fav.text = favoritesData.company
                 location_fav.text = favoritesData.location
-
-                Picasso.get()
-                    .load(favoritesData.avatar)
-                    .into(itemView.img_fav)
+                img_fav.setImageBitmap(toBitmap(favoritesData.avatar))
 
                 detail_fav.setOnClickListener(CustomOnItemClickListener(
                     adapterPosition, object : CustomOnItemClickListener.OnItemClickCallback {
                         override fun onItemClicked(v: View, position: Int) {
-                            val favorite = UserListData(favoritesData.avatar, favoritesData.name)
+                            val favorite = UserListData(username = favoritesData.name, offlineAvatar = favoritesData.avatar)
                             val detailIntent = Intent(activity, DetailUserActivity::class.java)
                             detailIntent.putExtra(DetailUserActivity.EXTRA_DETAIL, favorite)
+                            detailIntent.action = "FROM FAVORITE ACTIVITY"
                             activity.startActivity(detailIntent)
                         }
                     }
@@ -77,7 +75,7 @@ class FavoriteAdapter(private val activity: Activity) :
     }
 
     //delete item and notify data changed in widget
-    fun deleteItem(context: Context, favoritesData: FavoritesData) {
+    fun deleteItem(context: Context, favoritesData: Favorite) {
         val dialogTitle = activity.resources.getString(R.string.delete_favorite)
         val dialogMessage = activity.resources.getString(R.string.delete_dialog)
         val alertDialog = AlertDialog.Builder(activity)

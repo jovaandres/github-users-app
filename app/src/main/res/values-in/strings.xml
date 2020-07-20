@@ -6,7 +6,7 @@
     <string name="tab_text_2">Mengikuti</string>
     <string name="not_found">Pengguna tidak ditemukan</string>
     <string name="search_hint">Cari pengguna</string>
-    <string name="connection_unavailable">Koneksi bermasalah, periksa koneksi internet anda</string>
+    <string name="connection_unavailable">Sambungan gagal</string>
     <string name="profile_picture">Foto profil</string>
     <string name="location_icon">Ikon Lokasi</string>
     <string name="company_icon">Ikon perusahaan</string>
@@ -27,4 +27,6 @@
     <string name="add_widget">Add widget</string>
     <string name="favorite_image_banner">Favorite Image Banner</string>
     <string name="no_data">No Data</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
 </resources>

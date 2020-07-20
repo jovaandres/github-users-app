@@ -55,7 +55,7 @@
             android:exported="true"
             android:grantUriPermissions="true"
             android:readPermission="com.sampling.test.githubUser.READ_DATABASE"
-            android:writePermission="com.sampling.test.githubUser.WRITE_DATABASE"></provider>
+            android:writePermission="com.sampling.test.githubUser.WRITE_DATABASE" />
 
         <service
             android:name=".widget.StackWidgetService"

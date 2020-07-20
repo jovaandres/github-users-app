@@ -60,6 +60,7 @@ class CardViewAdapter(
             listData.username
         )
         val detailIntent = Intent(activity, DetailUserActivity::class.java)
+        detailIntent.action = "FROM MAIN ACTIVITY"
         detailIntent.putExtra(DetailUserActivity.EXTRA_DETAIL, user)
         activity.startActivity(detailIntent)
     }

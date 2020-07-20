@@ -2,7 +2,9 @@ package com.sampling.test.githubUser.db
 
 import android.net.Uri
 import android.provider.BaseColumns
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.sampling.test.githubUser.db.Favorite.Companion.TABLE_NAME
 import com.sampling.test.githubUser.provider.FavoriteProvider
 
@@ -13,16 +15,16 @@ data class Favorite(
     var id: Int? = null,
 
     @ColumnInfo(name = COLUMN_FAVORITE_NAME)
-    var name: String? = "",
+    var name: String = "",
 
     @ColumnInfo(name = COLUMN_FAVORITE_AVATAR)
-    var avatar: String? = "",
+    var avatar: String = "",
 
     @ColumnInfo(name = COLUMN_FAVORITE_COMPANY)
-    var company: String? = "",
+    var company: String = "",
 
     @ColumnInfo(name = COLUMN_FAVORITE_LOCATION)
-    var location: String? = ""
+    var location: String = ""
 ) {
     companion object : BaseColumns {
         const val TABLE_NAME = "favorites"

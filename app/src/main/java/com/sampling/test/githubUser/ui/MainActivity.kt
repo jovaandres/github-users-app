@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.CardViewAdapter
 import com.sampling.test.githubUser.viewModel.SearchListViewModel
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import com.shashank.sony.fancytoastlib.FancyToast
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -52,10 +51,12 @@ class MainActivity : AppCompatActivity() {
             run {
                 if (status == "Unavailable") {
                     progress_bar.hide()
-                    Toast.makeText(
+                    FancyToast.makeText(
                         this,
                         getString(R.string.connection_unavailable),
-                        Toast.LENGTH_SHORT
+                        FancyToast.LENGTH_SHORT,
+                        FancyToast.ERROR,
+                        true
                     ).show()
                 }
             }
@@ -87,13 +88,14 @@ class MainActivity : AppCompatActivity() {
                 rv_user.setHasFixedSize(true)
                 val cardViewAdapter =
                     CardViewAdapter(list, this)
-                val alphaAdapter = AlphaInAnimationAdapter(cardViewAdapter)
-                alphaAdapter.setFirstOnly(false)
-                rv_user.adapter = ScaleInAnimationAdapter(alphaAdapter)
+                rv_user.adapter = ScaleInAnimationAdapter(cardViewAdapter)
                 progress_bar.hide()
-                if (list.size == 0) Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.not_found), Toast.LENGTH_SHORT
+                if (list.size == 0) FancyToast.makeText(
+                    this,
+                    getString(R.string.not_found),
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.ERROR,
+                    true
                 ).show()
             }
         })

@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import androidx.preference.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
+import androidx.preference.SwitchPreference
 import com.sampling.test.githubUser.AlarmReceiver
 import com.sampling.test.githubUser.R
 
@@ -51,9 +54,9 @@ class SettingsActivity : AppCompatActivity() {
             language = "language"
             favorite = "favorite"
 
-            reminderPreference = findPreference<SwitchPreference>(reminder) as SwitchPreference
-            languagePreference = findPreference<Preference>(language) as Preference
-            favoritePreference = findPreference<Preference>(favorite) as Preference
+            reminderPreference = findPreference<SwitchPreference?>(reminder) as SwitchPreference
+            languagePreference = findPreference<Preference?>(language) as Preference
+            favoritePreference = findPreference<Preference?>(favorite) as Preference
 
             val sh = preferenceManager.sharedPreferences
             reminderPreference.setDefaultValue(sh.getBoolean(reminder, false))
@@ -71,16 +74,23 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
-            if (key == reminder) {
-                reminderPreference.setDefaultValue(sharedPreferences.getBoolean(reminder, false))
-                if (reminderPreference.isChecked) {
-                    alarmReceiver.setAlarm(
-                        context, getString(R.string.app_name), getString(
-                            R.string.message
+            when (key) {
+                reminder -> {
+                    reminderPreference.setDefaultValue(
+                        sharedPreferences.getBoolean(
+                            reminder,
+                            false
                         )
                     )
-                } else {
-                    alarmReceiver.cancelAlarm(context)
+                    if (reminderPreference.isChecked) {
+                        alarmReceiver.setAlarm(
+                            context, getString(R.string.app_name), getString(
+                                R.string.message
+                            )
+                        )
+                    } else {
+                        alarmReceiver.cancelAlarm(context)
+                    }
                 }
             }
         }

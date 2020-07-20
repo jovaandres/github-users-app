@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,8 +15,11 @@ import com.sampling.test.githubUser.adapter.SectionsPagerAdapter
 import com.sampling.test.githubUser.data.UserListData
 import com.sampling.test.githubUser.db.Favorite
 import com.sampling.test.githubUser.db.Favorite.Companion.CONTENT_URI
+import com.sampling.test.githubUser.helper.MappingHelper.fromBitmap
+import com.sampling.test.githubUser.helper.MappingHelper.toBitmap
 import com.sampling.test.githubUser.viewModel.DetailUserViewModel
 import com.sampling.test.githubUser.widget.FavoriteUserWidget
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_user.*
 import org.jetbrains.anko.doAsync
@@ -48,11 +50,20 @@ class DetailUserActivity : AppCompatActivity() {
         val user = intent.getParcelableExtra(EXTRA_DETAIL) as UserListData
         username.text = user.username
 
-        //Load image with Picasso
-        Picasso.get()
-            .load(user.avatar)
-            .resize(300, 300)
-            .into(avatar)
+        when (intent.action) {
+            "FROM MAIN ACTIVITY" -> {
+                //Load image with Picasso
+                Picasso.get()
+                    .load(user.avatar)
+                    .resize(300, 300)
+                    .into(avatar)
+            }
+            "FROM FAVORITE ACTIVITY" -> {
+                avatar.setImageBitmap(user.offlineAvatar?.let { toBitmap(it) })
+            }
+
+        }
+
 
         viewModel.setDetailUser(user.username)
         getDetail()
@@ -65,17 +76,20 @@ class DetailUserActivity : AppCompatActivity() {
             doAsync {
                 values.apply {
                     put(Favorite.COLUMN_FAVORITE_NAME, user.username)
-                    put(Favorite.COLUMN_FAVORITE_AVATAR, user.avatar)
+                    put(Favorite.COLUMN_FAVORITE_AVATAR,
+                        user.avatar?.let { fromBitmap(it) })
                     put(Favorite.COLUMN_FAVORITE_COMPANY, company.text.toString())
                     put(Favorite.COLUMN_FAVORITE_LOCATION, location.text.toString())
                 }
                 sendUpdate(applicationContext)
                 uiThread {
                     contentResolver.insert(CONTENT_URI, values)
-                    Toast.makeText(
+                    FancyToast.makeText(
                         this@DetailUserActivity,
                         resources.getString(R.string.add_favorite, user.username),
-                        Toast.LENGTH_SHORT
+                        FancyToast.LENGTH_SHORT,
+                        FancyToast.SUCCESS,
+                        true
                     ).show()
                     fab_fav.apply {
                         setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -121,10 +135,12 @@ class DetailUserActivity : AppCompatActivity() {
             run {
                 if (status == "Unavailable") {
                     progress_bar2.visibility = View.GONE
-                    Toast.makeText(
+                    FancyToast.makeText(
                         this,
                         getString(R.string.connection_unavailable),
-                        Toast.LENGTH_SHORT
+                        FancyToast.LENGTH_SHORT,
+                        FancyToast.ERROR,
+                        true
                     ).show()
                 }
             }

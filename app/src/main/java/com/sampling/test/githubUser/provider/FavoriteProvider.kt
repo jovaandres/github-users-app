@@ -110,8 +110,8 @@ class FavoriteProvider : ContentProvider() {
     private fun favoritesContentValues(contentValues: ContentValues?): Favorite {
         val name = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_NAME).toString()
         val avatar = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_AVATAR).toString()
-        val company = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_COMPANY)
-        val location = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_LOCATION)
+        val company = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_COMPANY).toString()
+        val location = contentValues?.getAsString(Favorite.COLUMN_FAVORITE_LOCATION).toString()
         return Favorite(name = name, avatar = avatar, company = company, location = location)
     }
 }

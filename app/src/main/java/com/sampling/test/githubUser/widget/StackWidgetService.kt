@@ -9,7 +9,7 @@ import android.widget.RemoteViewsService
 import androidx.core.os.bundleOf
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.db.Favorite
-import com.squareup.picasso.Picasso
+import com.sampling.test.githubUser.helper.MappingHelper.toBitmap
 
 class StackWidgetService : RemoteViewsService() {
 
@@ -80,10 +80,7 @@ class StackWidgetService : RemoteViewsService() {
             cursor?.close()
             for (i in 0 until bitmapString.size) {
                 widgetItem.add(
-                    Picasso.get()
-                        .load(bitmapString[i])
-                        .resize(300, 300)
-                        .get()
+                    toBitmap(bitmapString[i])
                 )
             }
         }
