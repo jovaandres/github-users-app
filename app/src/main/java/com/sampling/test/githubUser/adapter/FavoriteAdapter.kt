@@ -43,7 +43,7 @@ class FavoriteAdapter(private val activity: Activity) :
                 detail_fav.setOnClickListener(CustomOnItemClickListener(
                     adapterPosition, object : CustomOnItemClickListener.OnItemClickCallback {
                         override fun onItemClicked(v: View, position: Int) {
-                            val favorite = UserListData(username = favoritesData.name, offlineAvatar = favoritesData.avatar)
+                            val favorite = UserListData(login = favoritesData.name, offlineAvatar = favoritesData.avatar)
                             val detailIntent = Intent(activity, DetailUserActivity::class.java)
                             detailIntent.putExtra(DetailUserActivity.EXTRA_DETAIL, favorite)
                             detailIntent.action = "FROM FAVORITE ACTIVITY"

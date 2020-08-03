@@ -22,9 +22,9 @@ class CardViewAdapter(
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(listData: UserListData) {
             with(itemView) {
-                tv_username.text = listData.username
+                tv_username.text = listData.login
                 Picasso.get()
-                    .load(listData.avatar)
+                    .load(listData.avatar_url)
                     .resize(135, 135)
                     .into(itemView.img_avatar)
 
@@ -56,8 +56,8 @@ class CardViewAdapter(
     //Show detail by Parcelable Intent
     private fun showDetail(listData: UserListData) {
         val user = UserListData(
-            listData.avatar,
-            listData.username
+            listData.avatar_url,
+            listData.login
         )
         val detailIntent = Intent(activity, DetailUserActivity::class.java)
         detailIntent.action = "FROM MAIN ACTIVITY"

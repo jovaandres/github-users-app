@@ -26,10 +26,10 @@ class FollowViewAdapter(private val listFollow: ArrayList<UserFollowData>) :
         val follow = listFollow[position]
 
         Picasso.get()
-            .load(follow.avatar)
+            .load(follow.avatar_url)
             .resize(125, 125)
             .into(holder.itemView.follow_avatar)
 
-        holder.itemView.follow_name.text = follow.username
+        holder.itemView.follow_name.text = follow.login
     }
 }

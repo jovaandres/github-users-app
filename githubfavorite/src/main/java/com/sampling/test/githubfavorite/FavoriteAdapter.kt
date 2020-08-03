@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.sampling.test.githubfavorite.MappingHelper.toBitmap
 import kotlinx.android.synthetic.main.item_recycleview_favorite.view.*
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
@@ -24,10 +24,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                 name_fav.text = favoritesData.name
                 company_fav.text = favoritesData.company
                 location_fav.text = favoritesData.location
-
-                Picasso.get()
-                    .load(favoritesData.avatar)
-                    .into(itemView.img_fav)
+                img_fav.setImageBitmap(toBitmap(favoritesData.avatar))
             }
         }
     }

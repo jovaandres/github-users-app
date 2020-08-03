@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UserListData(
-    var avatar: String? = "",
-    var username: String = "",
+    var avatar_url: String? = "",
+    var login: String = "",
     var offlineAvatar: String? =""
 ) : Parcelable

@@ -1,6 +1,9 @@
 package com.sampling.test.githubfavorite
 
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 
 object MappingHelper {
 
@@ -18,5 +21,10 @@ object MappingHelper {
             cursor.close()
         }
         return favList
+    }
+
+    fun toBitmap(string: String): Bitmap {
+        val byteArray = Base64.decode(string, 0)
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
     }
 }

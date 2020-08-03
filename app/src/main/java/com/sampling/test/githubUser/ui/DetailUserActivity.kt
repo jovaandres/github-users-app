@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.sampling.test.githubUser.Other.NO_NETWORK
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.SectionsPagerAdapter
 import com.sampling.test.githubUser.data.UserListData
@@ -48,13 +49,13 @@ class DetailUserActivity : AppCompatActivity() {
 
 
         val user = intent.getParcelableExtra(EXTRA_DETAIL) as UserListData
-        username.text = user.username
+        username.text = user.login
 
         when (intent.action) {
             "FROM MAIN ACTIVITY" -> {
                 //Load image with Picasso
                 Picasso.get()
-                    .load(user.avatar)
+                    .load(user.avatar_url)
                     .resize(300, 300)
                     .into(avatar)
             }
@@ -65,19 +66,19 @@ class DetailUserActivity : AppCompatActivity() {
         }
 
 
-        viewModel.setDetailUser(user.username)
+        viewModel.setDetailUser(user.login)
         getDetail()
         getViewPager(user)
 
-        favoriteCheck(user.username)
+        favoriteCheck(user.login)
 
         fab_fav.setOnClickListener {
             val values = ContentValues()
             doAsync {
                 values.apply {
-                    put(Favorite.COLUMN_FAVORITE_NAME, user.username)
+                    put(Favorite.COLUMN_FAVORITE_NAME, user.login)
                     put(Favorite.COLUMN_FAVORITE_AVATAR,
-                        user.avatar?.let { fromBitmap(it) })
+                        user.avatar_url?.let { fromBitmap(it) })
                     put(Favorite.COLUMN_FAVORITE_COMPANY, company.text.toString())
                     put(Favorite.COLUMN_FAVORITE_LOCATION, location.text.toString())
                 }
@@ -86,7 +87,7 @@ class DetailUserActivity : AppCompatActivity() {
                     contentResolver.insert(CONTENT_URI, values)
                     FancyToast.makeText(
                         this@DetailUserActivity,
-                        resources.getString(R.string.add_favorite, user.username),
+                        resources.getString(R.string.add_favorite, user.login),
                         FancyToast.LENGTH_SHORT,
                         FancyToast.SUCCESS,
                         true
@@ -124,7 +125,7 @@ class DetailUserActivity : AppCompatActivity() {
             SectionsPagerAdapter(
                 this,
                 supportFragmentManager,
-                user.username
+                user.login
             )
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
@@ -133,7 +134,7 @@ class DetailUserActivity : AppCompatActivity() {
     private fun verifyConnection() {
         viewModel.getConnectionStatus().observe(this, Observer { status ->
             run {
-                if (status == "Unavailable") {
+                if (status == NO_NETWORK) {
                     progress_bar2.visibility = View.GONE
                     FancyToast.makeText(
                         this,

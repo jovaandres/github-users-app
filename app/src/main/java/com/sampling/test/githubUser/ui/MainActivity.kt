@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sampling.test.githubUser.Other.NO_NETWORK
 import com.sampling.test.githubUser.R
 import com.sampling.test.githubUser.adapter.CardViewAdapter
 import com.sampling.test.githubUser.viewModel.SearchListViewModel
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     private fun verifyConnection() {
         viewModel.getConnectionStatus().observe(this, Observer { status ->
             run {
-                if (status == "Unavailable") {
+                if (status == NO_NETWORK) {
                     progress_bar.hide()
                     FancyToast.makeText(
                         this,
