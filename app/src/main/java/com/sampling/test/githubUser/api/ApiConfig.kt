@@ -15,6 +15,7 @@ object ApiConfig {
             .build()
             .create(ApiService::class.java)
     }
+    
     private fun getClient(): OkHttpClient {
         return OkHttpClient().newBuilder()
             .connectTimeout(15, TimeUnit.SECONDS)
