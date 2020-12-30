@@ -76,12 +76,6 @@ class SettingsActivity : AppCompatActivity() {
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
             when (key) {
                 reminder -> {
-                    reminderPreference.setDefaultValue(
-                        sharedPreferences.getBoolean(
-                            reminder,
-                            false
-                        )
-                    )
                     if (reminderPreference.isChecked) {
                         alarmReceiver.setAlarm(
                             context, getString(R.string.app_name), getString(

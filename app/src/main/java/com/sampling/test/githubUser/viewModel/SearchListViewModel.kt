@@ -3,19 +3,13 @@ package com.sampling.test.githubUser.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sampling.test.githubUser.Other.BASE_URL
 import com.sampling.test.githubUser.Other.NO_NETWORK
-import com.sampling.test.githubUser.Other.getClient
-import com.sampling.test.githubUser.api.ApiService
+import com.sampling.test.githubUser.api.ApiConfig.requestApi
 import com.sampling.test.githubUser.data.ListData
 import com.sampling.test.githubUser.data.UserListData
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 class SearchListViewModel : ViewModel() {
 
@@ -23,12 +17,7 @@ class SearchListViewModel : ViewModel() {
     val connectionStatus = MutableLiveData<String>()
 
     fun setSearchList(username: String) {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(getClient())
-            .build()
-            .create(ApiService::class.java)
+        requestApi()
             .getSearchUser(username)
             .enqueue(object : Callback<ListData> {
                 override fun onFailure(call: Call<ListData>, t: Throwable) {
