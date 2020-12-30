@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun verifyConnection() {
-        viewModel.getConnectionStatus().observe(this, Observer { status ->
+        viewModel.getConnectionStatus().observe(this,  { status ->
             run {
                 if (status == NO_NETWORK) {
                     progress_bar.hide()
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getUserList() {
         rv_user.layoutManager = LinearLayoutManager(this)
-        viewModel.getSearchList().observe(this, Observer { list ->
+        viewModel.getSearchList().observe(this,  { list ->
             run {
                 rv_user.setHasFixedSize(true)
                 val cardViewAdapter =

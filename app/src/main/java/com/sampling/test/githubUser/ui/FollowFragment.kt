@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sampling.test.githubUser.R
@@ -55,7 +54,7 @@ class FollowFragment : Fragment() {
         viewModel.apply {
             setFollowList(username, type)
         }
-        viewModel.getUserList().observe(viewLifecycleOwner, Observer { lists ->
+        viewModel.getUserList().observe(viewLifecycleOwner,  { lists ->
             run {
                 viewModeling(lists)
             }

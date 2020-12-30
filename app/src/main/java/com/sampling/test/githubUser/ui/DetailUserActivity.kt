@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.sampling.test.githubUser.Other.NO_NETWORK
 import com.sampling.test.githubUser.R
@@ -48,7 +47,7 @@ class DetailUserActivity : AppCompatActivity() {
         verifyConnection()
 
 
-        val user = intent.getParcelableExtra(EXTRA_DETAIL) as UserListData
+        val user: UserListData = intent.getParcelableExtra(EXTRA_DETAIL)!!
         username.text = user.login
 
         when (intent.action) {
@@ -109,7 +108,7 @@ class DetailUserActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun getDetail() {
         //Set detail content by viewModel
-        viewModel.getDetailUser().observe(this, Observer { detail ->
+        viewModel.getDetailUser().observe(this,  { detail ->
             name.text = if (detail.name != "null") detail.name else "-"
             location.text = if (detail.location != "null") detail.location else "-"
             repository.text = "${detail.public_repos} ${getString(R.string.repos)}"
@@ -132,7 +131,7 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun verifyConnection() {
-        viewModel.getConnectionStatus().observe(this, Observer { status ->
+        viewModel.getConnectionStatus().observe(this,  { status ->
             run {
                 if (status == NO_NETWORK) {
                     progress_bar2.visibility = View.GONE
